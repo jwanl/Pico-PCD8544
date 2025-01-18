@@ -8,14 +8,22 @@ int main()
 {
     //stdio_init_all();
 
+    pcd8544_init();
+
     gpio_init(PIN_LED);
     gpio_set_dir(PIN_LED, GPIO_OUT);
+    gpio_put(PIN_LED, 0);
 
-    // Blink led
-    /*while (true) {
-        gpio_put(PIN_LED, 1);
+    gpio_put(PIN_LED, 1);
+    sleep_ms(1000);
+    pcd8544_swap_buffers();
+    gpio_put(PIN_LED, 0);
+
+    while (true) {
+        //gpio_put(PIN_LED, 1);
         sleep_ms(1000);
-        gpio_put(PIN_LED, 0);
+        //gpio_put(PIN_LED, 1);
         sleep_ms(1000);
-    }*/
+        //gpio_put(PIN_LED, 0);
+    }
 }

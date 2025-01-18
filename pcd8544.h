@@ -4,8 +4,6 @@
 #include "pico/stdlib.h"
 #include "hardware/spi.h"
 
-uint8_t pcd8544_framebuffer[84 * 6];
-
 /** Initializes SPI connection and applies reset signal to display */
 int pcd8544_init();
 
