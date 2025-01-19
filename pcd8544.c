@@ -10,8 +10,6 @@
 #define PIN_MOSI 19 // master out, slave in = data from main (MSB first, apparently?)
 #define PIN_DC   20 // mode select, low = command, high = data input
 
-#define SCREEN_WIDTH 84
-#define SCREEN_HEIGHT 48
 #define FRAMEBUFFER_SIZE SCREEN_WIDTH * SCREEN_HEIGHT / 8
 
 #define PCD8544_USE_VERTICAL_ADDRESSING 0
