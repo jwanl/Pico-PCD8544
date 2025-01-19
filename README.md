@@ -13,7 +13,7 @@ PCD8544 LCD screen driver/API for Raspberry Pi Pico written in C.
 | DIN   | serial data in | 19 |
 | CLK   | serial clock   | 18 |
 | VCC   | 3.3V           | 3.3V |
-| LIGHT | backlight 3.3V |    |
+| LIGHT | backlight leds | ground (3.3V on some models) |
 | GND   | ground         | ground |
 
 Reset: Resets device, apply to initialize chip, clears registers. Active low
