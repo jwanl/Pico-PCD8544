@@ -41,4 +41,6 @@ inline int pcd8544_getPixel(int x, int y) {
     return (pcd8544_framebuffer[(uint32_t)(div) * SCREEN_WIDTH + x] >> (uint32_t)(div >> 32U)) & 0x01U;
 }
 
+void pcd8544_clearDisplay();
+
 #endif /* PCD8544_DRIVER_H */

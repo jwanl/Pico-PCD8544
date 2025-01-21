@@ -42,13 +42,13 @@ int pcd8544_init()
     // Apply RST signal
     // apply RST low - wait for atleast 100ns - apply RST high
     gpio_put(PIN_RST, 0);
-    sleep_ms(1);
+    sleep_us(1);
     gpio_put(PIN_RST, 1);
 
     // Set normal display mode
     // apply DC low - apply 0b00100(PD)(VERT.ADDR.)(INSTR.SET) => 0b00100000 for testing
 
-    uint8_t normalDispMode[] = { 0x21, 0xB8, 0x04, 0x14, 0b00100000, 0b00001100 };
+    uint8_t normalDispMode[] = { 0x21, 0xB8, 0x04, 0x14, 0x20, 0x0C };
     for (int i = 0; i < 6; i++) {
         pcd8544_command(normalDispMode[i]);
     }
@@ -72,5 +72,15 @@ void pcd8544_command(uint8_t command)
     gpio_put(PIN_DC, 0);
     gpio_put(PIN_CS, 0);
     spi_write_blocking(SPI_PORT, &command, 1);
+    gpio_put(PIN_CS, 1);
+}
+
+void pcd8544_clearDisplay() {
+    static uint8_t empty = 0x00;
+    gpio_put(PIN_DC, 1);
+    gpio_put(PIN_CS, 0);
+    for(int i = 0; i < FRAMEBUFFER_SIZE; i++) {
+        spi_write_blocking(spi0, &empty, 1);
+    }
     gpio_put(PIN_CS, 1);
 }

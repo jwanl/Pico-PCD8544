@@ -13,6 +13,7 @@ int main()
     gpio_init(PIN_LED);
     gpio_set_dir(PIN_LED, GPIO_OUT);
     gpio_put(PIN_LED, 0);
+    pcd8544_clearDisplay();
 
     gpio_put(PIN_LED, 1);
     sleep_ms(1000);
@@ -20,10 +21,9 @@ int main()
     gpio_put(PIN_LED, 0);
 
     while (true) {
-        //gpio_put(PIN_LED, 1);
         sleep_ms(1000);
-        //gpio_put(PIN_LED, 1);
+        pcd8544_swap_buffers();
         sleep_ms(1000);
-        //gpio_put(PIN_LED, 0);
+        pcd8544_clearDisplay();
     }
 }
