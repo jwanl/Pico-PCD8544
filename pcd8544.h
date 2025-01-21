@@ -4,6 +4,7 @@
 #include "pico/stdlib.h"
 #include "pico/divider.h"
 #include "hardware/spi.h"
+#include "charset.h"
 
 #define SCREEN_WIDTH 84
 #define SCREEN_HEIGHT 48

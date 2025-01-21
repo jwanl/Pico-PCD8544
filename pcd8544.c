@@ -60,7 +60,8 @@ int pcd8544_swap_buffers()
 {
     gpio_put(PIN_DC, 1);
     gpio_put(PIN_CS, 0);
-    spi_write_blocking(spi0, pcd8544_framebuffer, FRAMEBUFFER_SIZE);
+    //spi_write_blocking(spi0, pcd8544_framebuffer, FRAMEBUFFER_SIZE);
+    spi_write_blocking(spi0, charset_test, FRAMEBUFFER_SIZE);
     gpio_put(PIN_CS, 1);
 
     return 0;
