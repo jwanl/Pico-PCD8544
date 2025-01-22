@@ -58,6 +58,8 @@ int pcd8544_init()
 
 int pcd8544_swap_buffers()
 {
+    pcd8544_reset_cursor();
+
     gpio_put(PIN_DC, 1);
     gpio_put(PIN_CS, 0);
     //spi_write_blocking(spi0, pcd8544_framebuffer, FRAMEBUFFER_SIZE);
@@ -76,7 +78,16 @@ void pcd8544_command(uint8_t command)
     gpio_put(PIN_CS, 1);
 }
 
-void pcd8544_clearDisplay() {
+void pcd8544_reset_cursor()
+{
+    // set y to 0 and x to 0
+    pcd8544_command(0b01000000);
+    pcd8544_command(0b10000000);
+}
+
+void pcd8544_clear_display() {
+    pcd8544_reset_cursor();
+
     static uint8_t empty = 0x00;
     gpio_put(PIN_DC, 1);
     gpio_put(PIN_CS, 0);
